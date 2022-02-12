@@ -1,7 +1,21 @@
 #pragma once
-#include <iostream>
-#include <string>
+#include "../Helpers/Error.h"
 
 namespace Truesight {
-	void Print(std::string input);
+	bool initialized = false;
+	Error latest_error;
+
+	bool Init() {
+		if (initialized)
+		{
+			latest_error = Error("Already Initialized!");
+			return false;
+		}
+
+		initialized = true;
+		return true;
+	}
+	Error GetError() {
+		return latest_error;
+	}
 }
